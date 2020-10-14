@@ -1,5 +1,8 @@
 /* Images created by: https://unsplash.com/@pawel_czerwinski */
 
+/* Google font - Spartan, Regular 400 and Bold 700 */
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&display=swap');
+
 html {
   box-sizing: border-box;
 }
@@ -11,19 +14,41 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  font-family: 'Spartan', sans-serif;
   font-size: 12px;
 }
 
+/* Style Div element <div> class="player-container" */
+.player-container {
+  /* Smart phone size without media Query */
+  height: 500px;
+  width: 400px;
+  background: #e7e7e7;
+  /* rounded corners looks modern */
+  border-radius: 20px;
+  /* makes container "float" off the background */
+  box-shadow: 0 15px 30px 5px rgba(0, 0, 0, 0.3);
+}
 
-
+/* Style the child Div element <div> class="img-container" */
 .img-container {
-
+  height: 300px;
+  width: 300px;
   position: relative;
   top: -50px;
   left: 50px;
 }
 
+/* Style the child Image element <img> */
+.img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+   /* rounded corners looks modern */
+   border-radius: 20px;
+   /* makes container "float" off the background */
+   box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.5);
+}
 
 h2 {
   font-size: 25px;
@@ -87,9 +112,11 @@ h3 {
   top: 3px;
 }
 
-/* Media Query: iPhone (Vertical) */
+/* Media Query: iPhone (Vertical) is 375px */
 @media screen and (max-width: 376px) {
-
+.player-container {
+  width: 95vw;
+}
 
   .img-container {
     left: 29px;
