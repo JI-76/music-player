@@ -7,6 +7,8 @@ const artist = document.getElementById('artist');
 const music = document.querySelector('audio');
 const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
@@ -101,16 +103,49 @@ function nextSong() {
 // On Load - Select First Song from array
 loadSong(songs[songIndex]);
 
-// Update Progress Bar & Time
+// Update Progress Bar & Time - e = Event 'timeupdate'
 function updateProgressBar(e) {
     if (isPlaying) {
         // console.log(e);
         const { duration, currentTime} = e.srcElement;
-        console.log(duration, currentTime);
+        //console.log(duration, currentTime);
+
         // Update Progress Bar width
         const progressPercent = (currentTime / duration) * 100;
         //console.log(progressPercent);
+        
+        // update HTML Div element <div> Progress bar display
         progress.style.width = `${progressPercent}%`;
+        
+        // Calculate display for duration in just minutes
+        const durationMinutes = Math.floor(duration / 60);
+        console.log('minutes: ', durationMinutes);
+        
+        // Calculate display for duration remainder in seconds
+        let durationSeconds = Math.floor(duration %60 );
+        if (durationSeconds < 10)  {
+            durationSeconds = `0${durationSeconds}`;
+        };
+        console.log('seconds: ', durationSeconds);
+    
+        // delay switching the duration  HTML Span element <span> display to avoid NaNa (Not a Number) being displayed
+        if (durationSeconds) {
+            // update the duration HTML Span element <span> display
+            durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
+        };
+        
+        // Calculate display for current time in just minutes
+        const currentMinutes = Math.floor(currentTime / 60);
+        console.log('minutes: ', currentMinutes);
+        
+        // Calculate display for current time remainder in seconds
+        let currentSeconds = Math.floor(currentTime %60 );
+        if (currentSeconds < 10)  {
+            currentSeconds = `0${currentSeconds}`;
+        };
+        console.log('seconds: ', currentSeconds);
+        // update the current-time HTML Span element <span> display
+        currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
     };
 }
 
